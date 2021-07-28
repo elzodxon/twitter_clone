@@ -1,12 +1,12 @@
 <template>
  <div class="container">
-   <div class="row">
+   <pre>{{show}}</pre>
+     <div class="row">
      <div class="col-4" v-for="(item, index) in currencies.data" :key="index">
        <div >
          <span>{{item.code}} = {{item.rate}} so'm</span>
          <span :class="item.diff < 0 ? 'red': 'green'">{{item.diff}}</span>
        </div>
-
      </div>
      <div class="col-12">
        <div class="single-news">
@@ -44,14 +44,37 @@ export default {
       singleNews: null,
       currencies: null,
       kun: null,
-      diff: 232
+      diff: 232,
+      news: null,
+      number: 'Salom'
     }
   },
   mounted() {
+    this.fetchNews()
     this.fetchSingleNews()
     this.fetchCurrencies()
+    console.log(this.$route)
+  },
+  computed:{
+    show(){
+      return this.number.toLowerCase()
+    },
   },
   methods:{
+    fetchNews(){
+      try{
+        fetch(`https://api.uza.uz/api/v1/posts`)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            this.news = data
+          });
+      }
+      catch{
+        console.log('error')
+      }
+    },
+
     fetchSingleNews(){
       fetch(`https://api.uzsuv.uz/api/v1/press/news/${this.$route.params.id}/`)
           .then(response => response.json())
@@ -108,3 +131,14 @@ export default {
   color: green;
 }
 </style>
+
+<script>
+let c = 5
+const obj = {
+  a: 5,
+  take(){
+    return c
+  }
+}
+
+</script>
