@@ -7,18 +7,12 @@
           <news-card :news-item="item" />
         </div>
       </div>
-    </div>
 
-    <div>
-      <button @click="change(1)">1</button>
-      <button @click="change(2)">2</button>
-      <button @click="change(3)">3</button>
-      <button @click="change(4)">4</button>
-
-      <div v-if="show === 1">1-info</div>
-      <div v-else-if="show === 2">2-info</div>
-      <div v-else-if="show === 3">3-info</div>
-      <div v-else>4-info</div>
+      <div class="row">
+        <div class="col-12">
+          <slider/>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -26,12 +20,40 @@
 <script>
 import NewsCard from "../components/NewsCard";
 import MainHeader from "../components/MainHeader";
+import Slider from "../components/Slider";
+import PropsComponent from '../components/props'
 export default {
-  components: {NewsCard, MainHeader},
+  components: {NewsCard, MainHeader, Slider,PropsComponent},
   data(){
     return{
       newsArray:[],
-      show: 1
+      show: 1,
+      news:[
+        {
+          id: 1,
+          img: 'https://get-edu.kz/wp-content/uploads/2020/04/helpbox-contact.jpg',
+          title: 'Learning props in Vuejs',
+          date: new Date()
+        },
+        {
+          id: 2,
+          img: 'https://picsum.photos/400/400',
+          title: 'Learning props in Vuejs 2',
+          date: new Date()
+        },
+        {
+          id: 3,
+          img: 'https://picsum.photos/400/400',
+          title: 'Learning props in Vuejs 3',
+          date: new Date()
+        },
+        {
+          id: 4,
+          img: 'https://picsum.photos/400/400',
+          title: 'Learning props in Vuejs 4',
+          date: new Date()
+        }
+      ],
     }
   },
   mounted() {

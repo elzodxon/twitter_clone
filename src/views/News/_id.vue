@@ -1,6 +1,5 @@
 <template>
  <div class="container">
-   <pre>{{show}}</pre>
      <div class="row">
      <div class="col-4" v-for="(item, index) in currencies.data" :key="index">
        <div >
@@ -53,7 +52,6 @@ export default {
     this.fetchNews()
     this.fetchSingleNews()
     this.fetchCurrencies()
-    console.log(this.$route)
   },
   computed:{
     show(){
